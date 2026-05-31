@@ -3,7 +3,7 @@
 ## Zweck
 Relay ist eine Plattform für Teamzusammenarbeit und Aufgabenverwaltung.
 Diese Richtlinie definiert, wie wir Benutzerdaten, Projektinformationen
-und Systemressourcen schützen.😁
+und Systemressourcen schützen.
 
 ## Geschützte Daten
 Die folgenden Daten müssen jederzeit geschützt werden:
@@ -20,7 +20,7 @@ Die folgenden Daten werden in unserer Datenbank gespeichert:
 - Projekt- und Aufgabeninhalte der Benutzer
 - Teammitgliedschaft und Rolleninformationen
 
-## Sicherheitsregeln🩻
+## Sicherheitsregeln
 - Niemals Passwörter, API-Schlüssel oder Secrets in Git committen
 - Alle sensiblen Werte nur in Umgebungsvariablen (.env) speichern
 - Immer Pull Requests verwenden — niemals direkt auf main pushen
@@ -42,12 +42,9 @@ Alle Benutzereingaben müssen im Backend validiert werden, um folgendes zu verhi
 ## Sicherheitslücken melden
 Wenn eine Sicherheitslücke entdeckt wird:
 1. Keinen öffentlichen GitHub-Issue erstellen
-2. Direkt an @sobhanhaerizadeh melden
+2. Direkt an @NimaB6 melden
 3. Auf Bestätigung warten, bevor etwas veröffentlicht wird
 
 ## Verantwortlichkeit
-Diese Sicherheitsrichtlinie wird gepflegt von **Nima Bahrami** (@NimaB6)
-Rolle: Backend · Cybersecurity
-
 Bei sicherheitsbezogenen Fragen oder Bedenken bitte
 @NimaB6 kontaktieren.
