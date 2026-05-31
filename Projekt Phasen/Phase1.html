@@ -791,6 +791,45 @@ a:hover { color: var(--text); text-decoration: underline; }
 .dot-y:hover { transform: scale(1.3); }
 .dot-g:hover { transform: scale(1.3); }
 
+/* ── COMPLETED TASKS ── */
+.task-item.completed {
+  background: linear-gradient(90deg, rgba(63,185,80,.08), transparent);
+  opacity: .75;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--green);
+}
+
+.task-item.completed .task-desc {
+  color: var(--dim);
+}
+
+.task-check {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--bg);
+  font-weight: 700;
+  animation: checkPopIn .5s cubic-bezier(.34, 1.56, .64, 1);
+  box-shadow: 0 0 12px rgba(63,185,80,.4);
+}
+
+@keyframes checkPopIn {
+  0% { transform: translateY(-50%) scale(0); opacity: 0; }
+  100% { transform: translateY(-50%) scale(1); opacity: 1; }
+}
+
 /* Footer green dot pulse */
 @keyframes footerPulse {
   0%, 100% { opacity: 1; transform: scale(1); }
@@ -940,7 +979,7 @@ a:hover { color: var(--text); text-decoration: underline; }
   </div>
   <div class="task-list">
 
-    <div class="task-item">
+    <div class="task-item completed" style="position: relative;">
       <div class="task-stripe" style="background:var(--red);"></div>
       <div class="task-inner">
         <span class="task-issue">#01</span>
@@ -957,9 +996,10 @@ a:hover { color: var(--text); text-decoration: underline; }
           </div>
         </div>
       </div>
+      <div class="task-check">✓</div>
     </div>
 
-    <div class="task-item">
+    <div class="task-item completed" style="position: relative;">
       <div class="task-stripe" style="background:var(--yellow);"></div>
       <div class="task-inner">
         <span class="task-issue">#02</span>
@@ -977,6 +1017,7 @@ a:hover { color: var(--text); text-decoration: underline; }
           </div>
         </div>
       </div>
+      <div class="task-check">✓</div>
     </div>
 
   </div>
