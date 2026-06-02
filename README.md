@@ -1,5 +1,8 @@
 # relay-tasks
 
+<img width="1672" height="941" alt="relayteam" src="https://github.com/user-attachments/assets/076ea201-f7b9-4e70-a4db-f9fb00dfcb11" />
+
+
 > Team tasks that flow. Each member owns their stage and passes it forward.
 
 ---
