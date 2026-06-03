@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 function Register() {
 
-    const [error, setError] = useState('');
+    const [error, setError] = useState<string[]>([]);
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [email, setEmail] = useState('');
@@ -10,26 +10,23 @@ function Register() {
     function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
-            setError('Passwörter stimmen nicht überein! ');
-        }
-        else {
-            setError('');
-        }
+        const newErrors = [];
 
-        if (email.length === 0) {
-            setError('E-Mail darf nicht leer sein! ');
-        }
+        if (password.length === 0) newErrors.push('Passwort darf nicht leer sein! ');
+        if (email.length === 0) newErrors.push('E-Mail darf nicht leer sein! ');
+        if (password!== confirmPassword) newErrors.push('Passwörter stimmen nicht überein! ');
+
+        setError(newErrors);
 
     }
 
 
     useEffect(() => {
         if (confirmPassword && password !== confirmPassword && password.length > 0) {
-            setError('Passwörter stimmen nicht überein! ');
+            setError(['Passwörter stimmen nicht überein! ']);
         }
         else {
-            setError('');
+            setError([]);
         }
     }, [confirmPassword, password]);
 
@@ -51,7 +48,11 @@ function Register() {
                         <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
                             Register
                         </button>
-                        <p className="text-red-500 text-sm mt-2 font-bold">{error}</p>
+                        <div className="text-red-500 text-sm mt-2 font-bold">
+                            {error.map((err, index) => (
+                                <p key={index}>{err}</p>
+                            ))}
+                        </div>
                     </form>
                 </div>
             </div>
