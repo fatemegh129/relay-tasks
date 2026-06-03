@@ -8,6 +8,10 @@ router = APIRouter(
 def register_mock():
     return {"message": "Registrierung erfolgreich"}
 
+
 @router.post("/login")
+
+
 def login_mock():
+
     return "Login erfolgreich"
