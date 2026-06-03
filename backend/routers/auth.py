@@ -4,7 +4,6 @@ router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
 )
-
 @router.post("/register")
 def register_mock():
     return {"message": "Registrierung erfolgreich"}
