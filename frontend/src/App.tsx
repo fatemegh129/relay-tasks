@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ProtectedRoute from './components/ProtectedRoute';
+import Dashboard from './pages/Dashboard';
 
 function App() {
   return (
@@ -22,12 +24,22 @@ function App() {
                 Register
               </a>
             </button>
+            <button className="mt-6 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded ml-4">
+              <a href="/dashboard">
+                Dashboard
+              </a>
+            </button>
           </div>
         </div>
       } />
 
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/dashboard" element={
+        <ProtectedRoute>
+          <Dashboard />
+        </ProtectedRoute>
+      } />
 
     </Routes>
   );

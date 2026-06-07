@@ -7,7 +7,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const [error, setError] = useState<string[]>([]);
 
-    function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
+    async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const newErrors: string[] = [];
@@ -15,7 +15,24 @@ function Login() {
         if (email.length === 0) newErrors.push('E-Mail darf nicht leer sein! ');
         if (password.length === 0) newErrors.push('Passwort darf nicht leer sein! ');
 
-        setError(newErrors);
+        if (newErrors.length > 0) {
+
+            setError(newErrors);
+            return;
+        }
+        
+        const response = await fetch('http://localhost:8000/auth/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password }),
+        });
+
+        if (response.ok) {
+            localStorage.setItem('token', 'fake-token');
+            window.location.href = '/dashboard';
+        } else {
+            setError(['Ungültige E-Mail oder Passwort!']);
+        }
     }
 
     return (
@@ -65,6 +82,12 @@ function Login() {
                         {error.map((err, index) => (
                             <p key={index}>{err}</p>
                         ))}
+                    </div>
+                    <div className="text-center text-sm text-gray-400 mt-4">
+                        Noch kein Konto?{' '}
+                        <Link to="/register" className="text-green-400 hover:text-green-300 font-medium">
+                            Register
+                        </Link>
                     </div>
                 </form>
             </div>
