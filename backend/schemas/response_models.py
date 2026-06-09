@@ -2,7 +2,7 @@ from pydantic import BaseModel,EmailStr
 
 class RegisterResponse(BaseModel):
     message: str
-    EmailStr: str
+    email: EmailStr
 
 class LoginResponse(BaseModel):
     message: str
