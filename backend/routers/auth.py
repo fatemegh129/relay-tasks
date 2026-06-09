@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from schemas.auth import RegisterResponse, LoginResponse 
+from schemas.auth import RegisterResponse, LoginResponse
 
 router = APIRouter(
     prefix="/auth",
