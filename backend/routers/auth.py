@@ -1,5 +1,6 @@
-from fastapi import APIRouter
-from schemas.auth import RegisterResponse, LoginResponse
+from fastapi import APIRouter, Request
+from limiter import limiter
+from schemas.response_models import RegisterResponse, LoginResponse
 
 router = APIRouter(
     prefix="/auth",
@@ -14,7 +15,8 @@ def register_mock():
     }
 
 @router.post("/login", response_model=LoginResponse)
-def login_mock():
+@limiter.limit("5/minute")
+def login_mock(request: Request):
     return {
         "message": "Login erfolgreich",
         "token": "mock-jwt-token-xyz123"

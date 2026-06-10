@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 
 function Register() {
 
@@ -32,31 +33,67 @@ function Register() {
 
 
     return (
-        <>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full md:w-auto md:ml-4 md:mt-4">
-                <a href="/">
-                    Back to Home
-                </a>
-            </button>
-            <div className="min-h-screen bg-gray-950 flex items-center justify-center">
-                <div className="bg-gray-900 p-8 w-96 rounded-lg">
-                    <h1 className="text-white text-2xl font-bold mb-6">Register</h1>
-                    <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                        <input type="email" placeholder="E-Mail" className="bg-gray-800 text-white p-2 rounded" onChange={(e) => setEmail(e.target.value)} />
-                        <input type="password" placeholder="Password" className="bg-gray-800 text-white p-2 rounded" onChange={(e) => setPassword(e.target.value)} />
-                        <input type="password" placeholder="Confirm Password" className="bg-gray-800 text-white p-2 rounded" onChange={(e) => setConfirmPassword(e.target.value)} />
-                        <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-                            Register
-                        </button>
-                        <div className="text-red-500 text-sm mt-2 font-bold">
-                            {error.map((err, index) => (
-                                <p key={index}>{err}</p>
-                            ))}
-                        </div>
-                    </form>
-                </div>
+        <div className="min-h-screen bg-gray-950 flex items-center justify-center px-4 py-8 relative">
+            <Link
+                to="/"
+                className="absolute left-6 top-6 text-gray-300 hover:text-white text-sm font-medium"
+            >
+                ← Back
+            </Link>
+
+            <div className="bg-gray-900 p-8 w-full max-w-md rounded-3xl shadow-xl shadow-black/20">
+                <h1 className="text-white text-3xl font-bold mb-8 text-center">Register</h1>
+                <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                    <label className="flex flex-col gap-2 text-sm font-medium text-gray-300">
+                        E-Mail
+                        <input
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="bg-gray-800 text-white px-4 py-3 rounded-2xl border border-gray-700 focus:border-green-500 focus:outline-none"
+                            placeholder="E-Mail"
+                        />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm font-medium text-gray-300">
+                        Passwort
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="bg-gray-800 text-white px-4 py-3 rounded-2xl border border-gray-700 focus:border-green-500 focus:outline-none"
+                            placeholder="Passwort"
+                        />
+                    </label>
+                    <label className="flex flex-col gap-2 text-sm font-medium text-gray-300">
+                        Passwort wiederholen
+                        <input
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            className="bg-gray-800 text-white px-4 py-3 rounded-2xl border border-gray-700 focus:border-green-500 focus:outline-none"
+                            placeholder="Passwort bestätigen"
+                        />
+                    </label>
+                    <button
+                        type="submit"
+                        className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-3 rounded-2xl transition-all duration-200"
+                    >
+                        Register
+                    </button>
+                    <div className="text-red-500 text-sm mt-2 font-semibold">
+                        {error.map((err, index) => (
+                            <p key={index}>{err}</p>
+                        ))}
+                    </div>
+                    <div className="text-center text-sm text-gray-400 mt-4">
+                        Schon ein Konto?{' '}
+                        <Link to="/login" className="text-green-400 hover:text-green-300 font-medium">
+                            Login
+                        </Link>
+                    </div>
+                </form>
             </div>
-        </>
+        </div>
     )
 }
 

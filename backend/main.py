@@ -1,7 +1,28 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from limiter import limiter
+from slowapi.middleware import SlowAPIMiddleware
+from routers.auth import router as auth_router
 
 app = FastAPI(title="Relay Backend")
 
+
+app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
+
+origins = [
+    "http://localhost:5173",
+    "http://localhost:3000",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+app.include_router(auth_router)
 @app.get("/")
 def read_root():
     return "Backend läuft!"
